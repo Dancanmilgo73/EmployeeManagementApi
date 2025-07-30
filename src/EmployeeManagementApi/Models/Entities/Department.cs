@@ -1,3 +1,5 @@
+namespace EmployeeManagementApi.Models.Entities;
+
 public class Department
 {
     public int Id { get; set; }

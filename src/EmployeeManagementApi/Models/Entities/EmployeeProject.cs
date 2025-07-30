@@ -1,3 +1,5 @@
+namespace EmployeeManagementApi.Models.Entities;
+
 public class EmployeeProject
 {
     public int EmployeeId { get; set; }

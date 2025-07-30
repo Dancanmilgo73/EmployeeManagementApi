@@ -1,4 +1,7 @@
+using EmployeeManagementApi.Models.Entities;
 using Microsoft.EntityFrameworkCore;
+//Add a namespace declaration
+namespace EmployeeManagementApi.Infrastructure.Data;
 public class ApplicationDbContext : DbContext
 {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
