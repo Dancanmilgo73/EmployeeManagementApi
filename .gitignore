@@ -1,0 +1,85 @@
+# .NET Core
+*.user
+*.suo
+*.sln.docstates
+*.csproj.user
+bin/
+obj/
+*.nupkg
+*.snk
+*.dotCover
+*.DotSettings.user
+
+# ASP.NET Core
+appsettings.Development.json
+appsettings.*.json
+Properties/launchSettings.json
+
+# Entity Framework Core
+**/Migrations/*.cs
+!**/Migrations/*.csproj
+**/Migrations/*.Designer.cs
+
+# Visual Studio
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Docker
+Dockerfile.user
+docker-compose.override.yml
+.dockerignore
+
+# Test and Coverage
+testresults/
+coverage/
+*.trx
+*.xml
+*.coverage
+*.coveragexml
+
+# Build and Publish
+publish/
+artifacts/
+*.pubxml
+*.pubxml.user
+
+# Logs
+*.log
+logs/
+
+# Dependency Directories
+node_modules/
+packages/
+wwwroot/lib/
+
+# Environment Variables
+.env
+.env.local
+.env.*.local
+
+# Temporary Files
+*.tmp
+*.bak
+*.cache
+*.temp
+*.tmpproj
+
+# OS Generated Files
+.DS_Store
+Thumbs.db
+
+# IDE Specific
+*.code-workspace
+*.sublime-*
+
+# Miscellaneous
+*.pidb
+*.scc
+*.vs
+*.vscode
+*.idea
+*.sublime-workspace
+*.sublime-project
