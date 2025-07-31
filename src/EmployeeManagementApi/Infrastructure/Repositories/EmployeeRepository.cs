@@ -11,37 +11,22 @@ public class EmployeeRepository : IEmployeeRepository
     {
         _context = context;
     }
-    public async Task<Employee> GetByIdAsync(int id)
+    public async Task<Employee?> GetByIdAsync(int id)
     {
-        var employee = await _context.Employees.FindAsync(id);
-        if (employee == null)
-            throw new InvalidOperationException($"Employee with id {id} not found.");
-        return employee;
+        return await _context.Employees.FindAsync(id);
     }
     public async Task<IEnumerable<Employee>> GetAllAsync() => await _context.Employees.ToListAsync();
-    public async Task<Employee> AddAsync(Employee employee)
+    public async Task AddAsync(Employee employee)
     {
         await _context.Employees.AddAsync(employee);
-        await _context.SaveChangesAsync();
-        return employee;
-    }
-    public async Task<Employee> UpdateAsync(Employee employee)
-    {
-        _context.Employees.Update(employee);
-        await _context.SaveChangesAsync();
-        return employee;
     }
 
     public async Task<bool> DeleteAsync(int id)
     {
         var employee = await GetByIdAsync(id);
-        if (employee != null)
-        {
-            _context.Employees.Remove(employee);
-            await _context.SaveChangesAsync();
-            return true;
-        }
-        return false;
+        if (employee == null) return false;
+        _context.Employees.Remove(employee);
+        return true;
     }
     public async Task<IEnumerable<Employee>> GetEmployeesByProjectIdAsync(int projectId)
     {

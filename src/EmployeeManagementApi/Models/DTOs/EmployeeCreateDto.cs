@@ -1,13 +1,11 @@
 
 namespace EmployeeManagementApi.Models.DTOs;
 
-public class EmployeeDto
+public class EmployeeCreateDto
 {
-    public int? Id { get; set; }
     public string FirstName { get; set; } = string.Empty;
     public string LastName { get; set; } = string.Empty;
     public string Email { get; set; } = string.Empty;
-    public decimal Salary { get; set; }
-    public int DepartmentId { get; set; }
-    public string? DepartmentName { get; set; } = string.Empty;
+    public decimal Salary { get; set; } = 0;
+    public int? DepartmentId { get; set; } = 1; // Default to HR department
 }

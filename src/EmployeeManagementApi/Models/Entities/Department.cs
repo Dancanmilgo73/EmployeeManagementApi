@@ -1,9 +1,12 @@
-namespace EmployeeManagementApi.Models.Entities;
+using System.ComponentModel.DataAnnotations;
 
-public class Department
+namespace EmployeeManagementApi.Models.Entities;
+public class Department : BaseEntity
 {
-    public int Id { get; set; }
+    [Required]
     public string Name { get; set; } = string.Empty;
+
+    [Required]
     public string OfficeLocation { get; set; } = string.Empty;
     public List<Employee> Employees { get; set; } = new();
     public List<Project> Projects { get; set; } = new();

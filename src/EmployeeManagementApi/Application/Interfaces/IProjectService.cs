@@ -6,7 +6,10 @@ public interface IProjectService
 {
     Task<IEnumerable<ProjectDto>> GetAllAsync();
     Task<ProjectDto?> GetByIdAsync(int id);
-    Task<ProjectDto> CreateAsync(ProjectDto projectDto);
-    Task<ProjectDto?> UpdateAsync(int id, ProjectDto projectDto);
+    Task<int> CreateAsync(ProjectCreateDto projectDto);
+    Task<int?> UpdateAsync(int id, ProjectDto projectDto);
     Task<bool> DeleteAsync(int id);
+    Task<bool> AssignEmployeeToProjectAsync(EmployeeProjectDto employeeProjectDto);
+    Task<bool> RemoveEmployeeFromProjectAsync(EmployeeProjectDto employeeProjectDto);
+    Task<decimal> GetTotalBudgetAsync();
 }

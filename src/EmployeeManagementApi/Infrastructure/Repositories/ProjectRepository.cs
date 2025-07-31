@@ -1,6 +1,7 @@
 
 using EmployeeManagementApi.Infrastructure.Data;
 using EmployeeManagementApi.Infrastructure.Repositories.Interfaces;
+using EmployeeManagementApi.Models.DTOs;
 using EmployeeManagementApi.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,17 +16,14 @@ public class ProjectRepository : IProjectRepository
         _context = context;
     }
 
-    public async Task<Project> GetByIdAsync(int id)
+    public async Task<Project?> GetByIdAsync(int id)
     {
-        var project = await _context.Projects.FindAsync(id);
-        if (project == null)
-            throw new InvalidOperationException($"Project with id {id} not found.");
-        return project;
+        return await _context.Projects.FindAsync(id);
     }
 
     public async Task<IEnumerable<Project>> GetAllAsync()
     {
-        return await _context.Projects.ToListAsync();
+        return await _context.Projects.AsNoTracking().ToListAsync();
     }
 
     public async Task AddAsync(Project project)
@@ -33,23 +31,12 @@ public class ProjectRepository : IProjectRepository
         await _context.Projects.AddAsync(project);
     }
 
-    public async Task UpdateAsync(Project project)
-    {
-        _context.Projects.Update(project);
-        await _context.SaveChangesAsync();
-    }
-
     public async Task<bool> DeleteAsync(int id)
     {
         var project = await GetByIdAsync(id);
-        if (project != null)
-        {
-            _context.Projects.Remove(project);
-            await _context.SaveChangesAsync();
-            return true;
-        }
-        //what should we return after deletion?
-        return false;
+        if (project == null) return false;
+        _context.Projects.Remove(project);
+        return true;
     }
     //Get projects by employee ID
     public async Task<IEnumerable<Project>> GetProjectsByEmployeeIdAsync(int employeeId)
@@ -58,5 +45,26 @@ public class ProjectRepository : IProjectRepository
             .Where(ep => ep.EmployeeId == employeeId && ep.Project != null)
             .Select(ep => ep.Project!)
             .ToListAsync();
+    }
+    //Assign employee to project
+    public async Task<bool> AssignEmployeeToProjectAsync(EmployeeProjectDto employeeProject)
+    {
+        await _context.EmployeeProjects.AddAsync(new EmployeeProject
+        {
+            EmployeeId = employeeProject.EmployeeId,
+            ProjectId = employeeProject.ProjectId,
+            Role = employeeProject.Role
+        });
+        return true;
+    }
+
+    //Remove employee from project
+    public bool RemoveEmployeeFromProjectAsync(EmployeeProjectDto employeeProject)
+    {
+        var entity = _context.EmployeeProjects.Find(employeeProject.EmployeeId, employeeProject.ProjectId);
+        if (entity == null) return false;
+
+        _context.EmployeeProjects.Remove(entity);
+        return true;
     }
 }
