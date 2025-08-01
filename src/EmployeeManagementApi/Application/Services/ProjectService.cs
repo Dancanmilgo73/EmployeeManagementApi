@@ -22,7 +22,8 @@ public class ProjectService : IProjectService
             var project = new Project
             {
                 Name = projectDto.Name,
-                Budget = projectDto.Budget
+                Budget = projectDto.Budget,
+                DepartmentId = projectDto.DepartmentId,
             };
             await _unitOfWork.Projects.AddAsync(project);
             await _unitOfWork.SaveChangesAsync();
