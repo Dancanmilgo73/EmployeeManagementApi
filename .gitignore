@@ -16,9 +16,9 @@ appsettings.*.json
 Properties/launchSettings.json
 
 # Entity Framework Core
-**/Migrations/*.cs
-!**/Migrations/*.csproj
-**/Migrations/*.Designer.cs
+# **/Migrations/*.cs
+# !**/Migrations/*.csproj
+# **/Migrations/*.Designer.cs
 
 # Visual Studio
 .vscode/
