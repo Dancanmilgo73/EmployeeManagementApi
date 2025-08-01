@@ -154,7 +154,7 @@ public class ProjectService : IProjectService
         }
         catch (System.Exception)
         {
-            throw new ApplicationException("An error occurred while calculating the total budget.");
+            throw new ApplicationException($"An error occurred while calculating the total budget for department");
         }
     }
 }

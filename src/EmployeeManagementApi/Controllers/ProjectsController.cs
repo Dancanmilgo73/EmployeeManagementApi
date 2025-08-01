@@ -82,7 +82,13 @@ public class ProjectsController : ControllerBase
             return StatusCode(500, new { Message = ex.Message });
         }
     }
-
+    /// <summary>
+    /// Assigns an employee to a project.
+    /// This endpoint expects an EmployeeProjectDto containing the employee ID, project ID and the role.
+    /// For now, the only role accepts the values "Developer", "Manager", "Tester"
+    /// </summary>
+    /// <param name="employeeProjectDto"></param>
+    /// <returns></returns>
     [HttpPost("assign")]
     public async Task<IActionResult> AssignEmployeeToProject([FromBody] EmployeeProjectDto employeeProjectDto)
     {
