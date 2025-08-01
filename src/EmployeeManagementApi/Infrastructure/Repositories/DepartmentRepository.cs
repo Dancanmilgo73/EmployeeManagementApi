@@ -4,6 +4,7 @@ using EmployeeManagementApi.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace EmployeeManagementApi.Infrastructure.Repositories;
+
 public class DepartmentRepository : IDepartmentRepository
 {
     private readonly ApplicationDbContext _context;
@@ -28,5 +29,13 @@ public class DepartmentRepository : IDepartmentRepository
         if (department == null) return false;
         _context.Departments.Remove(department);
         return true;
+    }
+    public async Task<IEnumerable<Project>> GetProjectsByDepartmentIdAsync(int departmentId)
+    {
+        return await _context.Departments
+            .Where(d => d.Id == departmentId)
+            .SelectMany(d => d.Projects)
+            .AsNoTracking()
+            .ToListAsync();
     }
 }

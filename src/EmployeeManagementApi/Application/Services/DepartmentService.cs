@@ -72,7 +72,7 @@ public class DepartmentService : IDepartmentService
         }
     }
 
-    public async Task<int?> UpdateAsync(int id, DepartmentDto departmentDto)
+    public async Task<int?> UpdateAsync(int id, DepartmentUpdateDto departmentDto)
     {
         try
         {

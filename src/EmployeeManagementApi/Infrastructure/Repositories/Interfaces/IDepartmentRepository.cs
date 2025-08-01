@@ -10,4 +10,5 @@ public interface IDepartmentRepository
     Task<IEnumerable<Department>> GetAllAsync();
     Task AddAsync(Department department);
     Task<bool> DeleteAsync(int id);
+    Task<IEnumerable<Project>> GetProjectsByDepartmentIdAsync(int departmentId);
 }

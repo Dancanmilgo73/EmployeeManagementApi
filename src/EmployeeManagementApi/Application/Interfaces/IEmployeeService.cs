@@ -8,7 +8,7 @@ public interface IEmployeeService
     Task<IEnumerable<EmployeeDto>> GetAllAsync();
     Task<EmployeeDto?> GetByIdAsync(int id);
     Task<int> CreateAsync(EmployeeCreateDto employeeDto);
-    Task<int?> UpdateAsync(int id, EmployeeDto employeeDto);
+    Task<int?> UpdateAsync(int id, EmployeeUpdateDto employeeDto);
     Task<bool> DeleteAsync(int id);
     Task<IEnumerable<ProjectDto>> GetProjectsByEmployeeIdAsync(int employeeId);
 }

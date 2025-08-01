@@ -78,11 +78,11 @@ public class EmployeeService : IEmployeeService
         }
         catch (System.Exception)
         {
-            throw new ApplicationException("An error occurred while creating the employee.");
+            throw new ApplicationException("An error occurred while creating the employee. Be sure to enter valid data.");
         }
     }
 
-    public async Task<int?> UpdateAsync(int id, EmployeeDto employeeDto)
+    public async Task<int?> UpdateAsync(int id, EmployeeUpdateDto employeeDto)
     {
         if (employeeDto == null || id <= 0) return null;
 
@@ -100,7 +100,7 @@ public class EmployeeService : IEmployeeService
         }
         catch (System.Exception)
         {
-            throw new ApplicationException("An error occurred while updating the employee.");
+            throw new ApplicationException("An error occurred while updating the employee. Be sure to enter valid data.");
         }
     }
 

@@ -54,7 +54,7 @@ public class EmployeesController : ControllerBase
         }
     }
     [HttpPut("{id}")]
-    public async Task<IActionResult> Update(int id, [FromBody] EmployeeDto employeeDto)
+    public async Task<IActionResult> Update(int id, [FromBody] EmployeeUpdateDto employeeDto)
     {
         if (!ModelState.IsValid) return BadRequest(ModelState);
         try

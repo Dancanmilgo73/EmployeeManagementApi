@@ -56,7 +56,7 @@ public class ProjectsController : ControllerBase
         }
     }
     [HttpPut("{id}")]
-    public async Task<IActionResult> Update(int id, [FromBody] ProjectDto projectDto)
+    public async Task<IActionResult> Update(int id, [FromBody] ProjectUpdateDto projectDto)
     {
         if (!ModelState.IsValid) return BadRequest(ModelState);
         try
@@ -112,11 +112,11 @@ public class ProjectsController : ControllerBase
         }
     }
     [HttpGet("total-budget")]
-    public async Task<IActionResult> GetTotalBudget()
+    public async Task<IActionResult> GetTotalBudget(int departmentId)
     {
         try
         {
-            var totalBudget = await _projectService.GetTotalBudgetAsync();
+            var totalBudget = await _projectService.GetTotalBudgetAsync(departmentId);
             return Ok(new { TotalBudget = totalBudget });
         }
         catch (ApplicationException ex)

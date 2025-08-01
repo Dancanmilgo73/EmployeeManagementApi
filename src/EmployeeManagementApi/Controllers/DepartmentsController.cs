@@ -48,7 +48,7 @@ public class DepartmentsController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> Update(int id, [FromBody] DepartmentDto departmentDto)
+    public async Task<IActionResult> Update(int id, [FromBody] DepartmentUpdateDto departmentDto)
     {
         if (!ModelState.IsValid) return BadRequest(ModelState);
         try

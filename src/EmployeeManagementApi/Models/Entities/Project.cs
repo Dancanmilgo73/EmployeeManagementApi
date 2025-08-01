@@ -2,6 +2,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EmployeeManagementApi.Models.Entities;
+
 public class Project : BaseEntity
 {
     [Required]
@@ -15,4 +16,6 @@ public class Project : BaseEntity
     [StringLength(50, MinimumLength = 1, ErrorMessage = "Project code cannot be empty.")]
     public string? ProjectCode { get; set; }
     public List<EmployeeProject> EmployeeProjects { get; set; } = new();
+    public int DepartmentId { get; set; } // Foreign key
+    public Department? Department { get; set; } = null!;
 }

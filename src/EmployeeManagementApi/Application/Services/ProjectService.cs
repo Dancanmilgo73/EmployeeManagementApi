@@ -79,7 +79,7 @@ public class ProjectService : IProjectService
         }
     }
 
-    public async Task<int?> UpdateAsync(int id, ProjectDto projectDto)
+    public async Task<int?> UpdateAsync(int id, ProjectUpdateDto projectDto)
     {
         try
         {
@@ -145,11 +145,11 @@ public class ProjectService : IProjectService
             throw new ApplicationException("An error occurred while removing the employee from the project.");
         }
     }
-    public async Task<decimal> GetTotalBudgetAsync()
+    public async Task<decimal> GetTotalBudgetAsync(int departmentId)
     {
         try
         {
-            var projects = await _unitOfWork.Projects.GetAllAsync();
+            var projects = await _unitOfWork.Departments.GetProjectsByDepartmentIdAsync(departmentId);
             return projects.Sum(p => p.Budget);
         }
         catch (System.Exception)
